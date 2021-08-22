@@ -18,37 +18,36 @@ class Async:
                 definitions = []
 
                 for div in divs:
-                    word = div.find(attrs={'class': 'word'}).text
-                    if not word.lower().startswith(keyword.lower()): continue
+                    self.word = div.find(attrs={'class': 'word'}).text
+                    if not self.word.lower().startswith(keyword.lower()): continue
 
-                    meaning = div.find(attrs={'class': 'meaning'}).text
+                    self.meaning = div.find(attrs={'class': 'meaning'}).text
 
                     contributor = div.find(attrs={'class': 'contributor'})
 
-                    date = " ".join(contributor.text.split(' ')[-3:])
+                    self.date = " ".join(contributor.text.split(' ')[-3:])
 
-                    author = contributor.find('a').text
+                    self.author = contributor.find('a').text
 
-                    example = div.find(attrs={'class': 'example'}).text
-                    if '\r' in example: example = example.replace('\r', '\n')
+                    self.example = div.find(attrs={'class': 'example'}).text
+                    if '\r' in self.example: self.example = self.example.replace('\r', '\n')
 
                     div_footer = div.find(attrs={'class': 'def-footer'})
-                    thumbs = div_footer.find_all('span',
-                                                    attrs={'class': 'count'})
+                    thumbs = div_footer.find_all('span', attrs={'class': 'count'})
 
-                    upvotes = int((votes := [i.text for i in thumbs])[0])
+                    self.upvotes = int((votes := [i.text for i in thumbs])[0])
 
-                    downvotes = int(votes[1])
+                    self.downvotes = int(votes[1])
 
 
                     definitions.append({
-                        'meaning': meaning,
-                        'author': author,
-                        'date': date,
-                        'word': word,
-                        'example': example,
-                        'upvotes': upvotes,
-                        'downvotes': downvotes
+                        'meaning': self.meaning,
+                        'author': self.author,
+                        'date': self.date,
+                        'word': self.word,
+                        'example': self.example,
+                        'upvotes': self.upvotes,
+                        'downvotes': self.downvotes
                     })
                 if len(definitions) > 0: return definitions 
                 else: raise ValueError('No definition found.')
