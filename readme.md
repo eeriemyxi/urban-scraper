@@ -19,14 +19,14 @@ from urbanscrapper import define
 
 print(
 
-define("Hello world!"
+define("Hello world!")
 
 )
 ```
 ### Error handling 
-#####  if no definitions were found, it will raise [ValueError](https://docs.python.org/3/library/exceptions.html#ValueError) exception
+#####  If no definitions were found, it will raise [ValueError](https://docs.python.org/3/library/exceptions.html#ValueError) exception
 ### Return value
-#####  it returns Python dictionary object. `define("Hello world!"` would return something like this:
+**It returns Python dictionary object. `define("Hello world!"` would return something like this:**
 ```json
 [
    {
@@ -86,4 +86,4 @@ define("Hello world!"
 ]
 ```
 ### Note
-#### Try not to use the examples. In some cases, it looks weird. I'm working on it.
+**Try not to use the examples. In some cases, it looks weird. I'm working on it.**
