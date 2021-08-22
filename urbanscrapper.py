@@ -1,9 +1,7 @@
-from re import I
 import aiohttp as http
 import asyncio
 from bs4 import BeautifulSoup as bs4
 import requests
-from requests.models import codes
 class Async:
     @classmethod
     async def define(self,keyword):
