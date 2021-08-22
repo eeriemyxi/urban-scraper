@@ -26,7 +26,7 @@ define("Hello world!")
 ### Error handling 
 #####  If no definitions were found, it will raise [ValueError](https://docs.python.org/3/library/exceptions.html#ValueError) exception
 ### Return value
-**It returns Python dictionary object. `define("Hello world!"` would return something like this:**
+**It returns a list of Python dictionary objects. `define("Hello world!"` would return something like this:**
 ```json
 [
    {
