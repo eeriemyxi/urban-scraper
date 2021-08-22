@@ -2,6 +2,8 @@ import aiohttp as http
 import asyncio
 from bs4 import BeautifulSoup as bs4
 import requests
+
+
 class Async:
     @classmethod
     async def define(self,keyword):
@@ -49,6 +51,8 @@ class Async:
                     })
                 if len(definitions) > 0: return definitions 
                 else: raise ValueError('No definition found.')
+                    
+                    
 def define(keyword):
     res = requests.get(f'https://www.urbandictionary.com/define.php?term={keyword}')
     if res.status_code == 404: raise ValueError('No definitions found.')
@@ -72,8 +76,7 @@ def define(keyword):
         if '\r' in example: example = example.replace('\r', '\n')
 
         div_footer = div.find(attrs={'class': 'def-footer'})
-        thumbs = div_footer.find_all('span',
-                                        attrs={'class': 'count'})
+        thumbs = div_footer.find_all('span', attrs={'class': 'count'})
 
         upvotes = int((votes := [i.text for i in thumbs])[0])
 
