@@ -1,16 +1,27 @@
 import aiohttp as http
-import asyncio
 from bs4 import BeautifulSoup as bs4
 import requests
+import urllib
 
+class Definition():
+    def __init__(self, dict: dict) -> dict:
+        self.dict = dict
+        self.word = dict['word']
+        self.example = dict['example']
+        self.meaning = dict['meaning']
+        self.author = dict['author']
+        self.date = dict['date']
+        self.upvotes = dict['upvotes']
+        self.downvotes = dict['downvotes']
+        self.url = dict['url']
+    def json(self):
+        return self.dict
 
 class Async:
     @classmethod
     async def define(self,keyword):
         async with http.ClientSession() as session:
-            async with session.get(
-                    f'https://www.urbandictionary.com/define.php?term={keyword}'
-            ) as res:
+            async with session.get((url := f'https://www.urbandictionary.com/define.php?term={keyword}')) as res:
                 if res.status == 404: raise ValueError('No definitions found.')
                 content = await res.text()
                 soup = bs4(content, 'html.parser')
@@ -30,7 +41,8 @@ class Async:
                     self.author = contributor.find('a').text
 
                     self.example = div.find(attrs={'class': 'example'}).text
-                    if '\r' in self.example: self.example = self.example.replace('\r', '\n')
+                    self.example = self.example.replace('\r', '\n') ; self.example = self.example.replace('/"', '"') ; self.example = self.example.replace('\t', '\n')
+
 
                     div_footer = div.find(attrs={'class': 'def-footer'})
                     thumbs = div_footer.find_all('span', attrs={'class': 'count'})
@@ -40,21 +52,22 @@ class Async:
                     self.downvotes = int(votes[1])
 
 
-                    definitions.append({
+                    definitions.append(Definition({
                         'meaning': self.meaning,
                         'author': self.author,
                         'date': self.date,
                         'word': self.word,
                         'example': self.example,
                         'upvotes': self.upvotes,
-                        'downvotes': self.downvotes
-                    })
+                        'downvotes': self.downvotes,
+                        'url': urllib.parse.quote(url)
+                    }))
                 if len(definitions) > 0: return definitions 
                 else: raise ValueError('No definition found.')
                     
                     
 def define(keyword):
-    res = requests.get(f'https://www.urbandictionary.com/define.php?term={keyword}')
+    res = requests.get((url := f'https://www.urbandictionary.com/define.php?term={keyword}'))
     if res.status_code == 404: raise ValueError('No definitions found.')
     soup = bs4(res.text, 'html.parser')
     divs = soup.find_all('div', attrs={'class': 'def-panel'})
@@ -73,7 +86,7 @@ def define(keyword):
         author = contributor.find('a').text
 
         example = div.find(attrs={'class': 'example'}).text
-        if '\r' in example: example = example.replace('\r', '\n')
+        example = example.replace('\r', '\n') ; example = example.replace('/"', '"') ; example = example.replace('\t', '\n')
 
         div_footer = div.find(attrs={'class': 'def-footer'})
         thumbs = div_footer.find_all('span', attrs={'class': 'count'})
@@ -83,13 +96,14 @@ def define(keyword):
         downvotes = int(votes[1])
 
 
-        definitions.append({
+        definitions.append(Definition({
             'meaning': meaning,
             'author': author,
             'date': date,
             'word': word,
             'example': example,
             'upvotes': upvotes,
-            'downvotes': downvotes
-        })
+            'downvotes': downvotes,
+            'url': urllib.parse.quote(url)
+        }))
     if len(definitions) > 0: return definitions
