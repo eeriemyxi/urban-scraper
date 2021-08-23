@@ -30,7 +30,7 @@ If no definitions were found, it will raise [`ValueError`](https://docs.python.o
 
 ###  Return value
 
-It returns a list of `urbanscrapper.Definition` objects. These are the methods and attributes of it:
+It returns a list of [`urbanscrapper.Definition`](https://github.com/m-y-x-i/urban-scrapper/blob/f43a1ae3bb5d3d7a7c17af3fcb67450e90fa9310/urbanscrapper.py#L6-L18) objects. These are the methods and attributes of it:
 #### Methods
 
  - `json()`
