@@ -42,6 +42,7 @@ Attributes
 - `date`
 - `upvote`
 - `downvote`
+
 Methods
 - `as_dict()`
   - This will return a `dict` object of the Definition object.
