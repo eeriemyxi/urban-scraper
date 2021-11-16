@@ -1,5 +1,5 @@
 
-# Asynchronous and Synchronous Urban dictionary scraper
+# Asynchronous and Synchronous Urban Dictionary Scraper
 
 It uses [selectolax](https://github.com/rushter/selectolax) to parse the HTML and [httpx](https://github.com/encode/httpx) for sending HTTP requests.
 
