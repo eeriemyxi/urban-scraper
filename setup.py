@@ -7,7 +7,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="urban_scraper",
-    version="1.1",
+    version="1.2",
     packages=find_packages(include=["urban_scraper", "urban_scraper.*"]),
     install_requires=["aiofiles", "aiopath", "pickledb", "selectolax", "yarl", "httpx"],
     author="Myxi",
