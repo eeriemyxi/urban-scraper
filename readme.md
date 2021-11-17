@@ -51,7 +51,7 @@ Methods
 
 - **Using pip:** `pip install urban-scraper`
 - **Manual:**
- - Clone the folder somewhere
- - CD to the location
- - Install the packages listed in [`requirements.txt`](/requirements.txt) (`pip install -r requirements.txt)`)
- - Copy the folder, [urban_scraper](/urban_scraper) where you want to use it.
+  - Clone the folder somewhere
+  - CD to the location
+  - Install the packages listed in [`requirements.txt`](/requirements.txt) (`pip install -r requirements.txt)`)
+  - Copy the folder, [urban_scraper](/urban_scraper) where you want to use it.
