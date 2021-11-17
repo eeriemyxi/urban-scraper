@@ -20,9 +20,8 @@ def anext(async_iterator: AsyncIterator) -> Awaitable:
 
 
 async def define(query: str) -> AsyncIterator[Definition]:
-    '''
-    Returns an async iterator of all the `Definition` it could fetch.
-    '''
+    """Returns an async iterator of all the `Definition` it could fetch."""
+
     gen = await Define.construct(query)
     return gen
 
@@ -86,7 +85,7 @@ class Define:
         html = await self._get_html()
         parser = HTMLParser(html, True)
         nodes = parser.css(".def-panel")
-        defids = [int(i.attrs.get('data-defid')) for i in nodes]
+        defids = [int(i.attrs.get("data-defid")) for i in nodes]
         votes = await _async_get_votes(defids)
         for index, node in enumerate(parser.css(".def-panel")):
             contributor = node.css_first(".contributor")
@@ -106,7 +105,6 @@ class Define:
             )
             upvote = _search_defid(defid, votes).up
             downvote = _search_defid(defid, votes).down
-
             yield Definition(
                 defid=defid,
                 name=name,

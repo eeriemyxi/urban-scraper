@@ -45,4 +45,4 @@ Attributes
 
 Methods
 - `as_dict()`
-  - This will return a `dict` object of the Definition object.
+  - Converts the dataclass to a `dict` object and returns it.

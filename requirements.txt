@@ -1,0 +1,6 @@
+aiofiles
+aiopath
+pickledb
+selectolax
+yarl
+httpx

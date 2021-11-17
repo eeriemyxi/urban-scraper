@@ -1,6 +1,7 @@
 from dataclasses import dataclass, asdict
 from datetime import datetime
 
+
 @dataclass
 class Author:
     name: str
@@ -19,7 +20,5 @@ class Definition:
     downvote: int = None
 
     def as_dict(self):
-        '''
-        Converts the dataclass to a `dict` object and returns it.
-        '''
+        """Converts the dataclass to a `dict` object and returns it."""
         return asdict(self)

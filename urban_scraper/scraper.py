@@ -14,9 +14,7 @@ from ._months import MONTHS
 
 
 def define(query: str) -> Iterator[Definition]:
-    '''
-    Returns an iterator of all the `Definition` it could fetch.
-    '''
+    """Returns an iterator of all the `Definition` it could fetch."""
     gen = Define(query)
     return gen
 
@@ -92,7 +90,6 @@ class Define(Caching):
             )
             upvote = _search_defid(defid, votes).up
             downvote = _search_defid(defid, votes).down
-
             yield Definition(
                 defid=defid,
                 name=name,
