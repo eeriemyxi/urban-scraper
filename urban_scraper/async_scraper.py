@@ -34,7 +34,6 @@ class Define:
         self.url = URL("https://www.urbandictionary.com/define.php")
         self.query_url = self.url.with_query(term=self.query)
         await self._ensure()
-        self.iterator = self._iterdefs()
         return self
 
     def __aiter__(self):
@@ -44,14 +43,15 @@ class Define:
         return await anext(self.iterator)
 
     async def _ensure(self):
-        path = aiopath.AsyncPath("_cache")
+        path = aiopath.AsyncPath(__file__).parent.joinpath('_cache')
         if not await path.exists():
             await path.mkdir()
         self.path = path.joinpath("cache.db")
-        if not self.path.exists:
+        if not await self.path.exists():
             async with aiofiles.open(self.path, "w") as cache_file:
                 await cache_file.write("{}")
                 await cache_file.close()
+        self.iterator = self._iterdefs()
 
     async def _get_cache(self, key: str):
         async with aiofiles.open(self.path, "r") as cache_file:

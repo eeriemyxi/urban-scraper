@@ -1,6 +1,6 @@
 **/__pycache__
 /_old
 /dist
-/_cache
+**/_cache
 /urban_scraper.egg-info
 setup.py

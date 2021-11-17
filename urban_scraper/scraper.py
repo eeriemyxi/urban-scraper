@@ -23,7 +23,7 @@ class Caching:
         self._ensure()
 
     def _ensure(self):
-        path = pathlib.Path("_cache")
+        path = pathlib.Path(__file__).parent.joinpath('_cache')
         if not path.exists():
             path.mkdir()
         self.pickle = pickledb.load(str(path.joinpath("cache.db")), True)
