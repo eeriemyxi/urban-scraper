@@ -9,7 +9,7 @@ setup(
     name="urban_scraper",
     version="1.0",
     packages=find_packages(include=["urban_scraper", "urban_scraper.*"]),
-    requires=["aiofiles", "aiopath", "pickledb", "selectolax", "yarl", "httpx"],
+    install_requires=["aiofiles", "aiopath", "pickledb", "selectolax", "yarl", "httpx"],
     author="Myxi",
     author_email="myxi@duck.com",
     url="https://github.com/m-y-x-i/urban-scraper",
@@ -17,4 +17,5 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     python_requires=">=3.9",
+    license="GNU GPLv3"
 )
